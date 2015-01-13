@@ -24,8 +24,20 @@ explanation of extending existing dryml tags
    <%= file_field_tag param_name_for_this, attributes %>
 </def>
 
-<def tag="view" for="HoboCarrierwave::DefaultUploader">
+<def tag="input" for="HoboCarrierwave::ImageUploader">
+   <view/>
+   <p>upload to change only
+   <%= file_field_tag param_name_for_this, attributes %>
+   </p>
+</def>
+
+<def tag="view" for="HoboCarrierwave::ImageUploader">
    <image src="&this.url"/>
 </def>
+
+<def tag="view" for="HoboCarrierwave::DefaultUploader">
+   <a href="&this.url"><%= this.url %></a>
+</def>
+
 
 

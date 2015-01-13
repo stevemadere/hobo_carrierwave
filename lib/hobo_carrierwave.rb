@@ -19,20 +19,28 @@ module HoboCarrierwave
     end
   end
 
-end
+  class ImageUploader < DefaultUploader
+  end
 
-# The main work here is to monkey-patch HoboFields::Types
-# Adding a new field type for :carrierwave_attachment to HoboFields::Types
-module HoboFields
-  module Types
+  module FieldTypes
+
     class CarrierwaveAttachment < String
       COLUMN_TYPE = :string
       def self.declared(model,name,options)
         mount_options = options.clone
-        uploader = mount_options.delete(:uploader) || HoboCarrierwave::DefaultUploader
+        uploader = mount_options.delete(:uploader) || DefaultUploader
         model.mount_uploader(name, uploader, mount_options)
       end
       HoboFields.register_type(:carrierwave_attachment,self)
+    end
+
+    class CarrierwaveImage < CarrierwaveAttachment
+      COLUMN_TYPE = :string
+      def self.declared(model,name,options)
+        options[:uploader] = ImageUploader unless options.include?(:uploader)
+        super
+      end
+      HoboFields.register_type(:carrierwave_image,self)
     end
   end
 end
