@@ -2,14 +2,17 @@
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
+# Maintain your gem's version:
+require "hobo_carrierwave/version"
+
 Gem::Specification.new do |s|
   s.name = 'hobo_carrierwave'
+  s.version = HoboCarrierwave::VERSION
   s.summary = 'Extends hobo field types to work seamlessly with carrierwave attachments'
   s.description = 'Extends hobo field types to work seamlessly with carrierwave attachments'
   s.email = 'steve@stevemadere.com'
   s.homepage = 'https://github.com/stevemadere/hobo_carrierwave'
   s.license = 'MIT'
-  s.version = '0.0.2'
   s.authors = 'Steve Madere'
   s.files = Dir.glob('{lib}/**/*')
   s.platform = Gem::Platform::RUBY

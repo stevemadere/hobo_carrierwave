@@ -2,12 +2,23 @@ require 'hobo_fields'
 require 'carrierwave'
 
 module HoboCarrierwave
+  @@root = Pathname.new File.expand_path('../..', __FILE__)
+  def self.root; @@root; end
+
+  if defined?(Rails)
+    require 'hobo_carrierwave/railtie'
+
+    class Engine < ::Rails::Engine
+    end
+  end
+
   class DefaultUploader < ::CarrierWave::Uploader::Base
     storage :file
     def store_dir
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
   end
+
 end
 
 # The main work here is to monkey-patch HoboFields::Types

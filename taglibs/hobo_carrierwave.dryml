@@ -1,0 +1,31 @@
+<%# tag definitions for the hobo_carrierwave plugin %>
+
+<!--
+Defines a specialized default input tag for model fields of type :carierwave_attachment.  By default, unless an uploader is specified, these will have a field data type of HoboCarrierwave::DefaultUploader.
+
+### Caveats
+
+In any form where you expect to have a field of type HoboCarrierwave::*Uploader (:carrierwave_attachment), be sure to add the multipart attribute to the form
+heading.
+
+The easiest way to do this is by extending the form with and extend tag like so:
+
+If you have a model called Profile that contains a :carrierwave_attachment field, simply extend the form with old-form merge:
+
+    <extend tag="form" for="Profile">
+       <old-form merge multipart/>
+    </extend>
+
+See http://hobocentral.net/manual/dryml-guide#extending-a-tag for further
+explanation of extending existing dryml tags
+
+-->
+<def tag="input" for="HoboCarrierwave::DefaultUploader">
+   <%= file_field_tag param_name_for_this, attributes %>
+</def>
+
+<def tag="view" for="HoboCarrierwave::DefaultUploader">
+   <image src="&this.url"/>
+</def>
+
+
