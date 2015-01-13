@@ -16,7 +16,7 @@ If you have a model called Profile that contains a :carrierwave_attachment field
        <old-form merge multipart/>
     </extend>
 
-See http://hobocentral.net/manual/dryml-guide#extending-a-tag for further
+See [the Hobo docs on extending tags](http://hobocentral.net/manual/dryml-guide#extending-a-tag) for further
 explanation of extending existing dryml tags
 
 -->
