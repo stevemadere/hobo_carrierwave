@@ -1,7 +1,8 @@
 require 'hobo_fields'
+require 'carrierwave'
 
 module HoboCarrierwave
-  class DefaultUploader < CarrerWave::Uploader::Base
+  class DefaultUploader < ::CarrierWave::Uploader::Base
     storage :file
     def store_dir
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
