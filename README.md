@@ -50,7 +50,7 @@ in config/environments/*.rb
 
 ```ruby
   HoboCarrierwave::Config.storage = :fog # to use cloud storage
-  HoboCarrierwave::Config.photos.sizes = { thumbnail: [100,100], preview: [200,200] }
+  HoboCarrierwave::Config.image.sizes = { thumbnail: [100,100], preview: [200,200] }
 ```
 
 
