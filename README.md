@@ -3,7 +3,7 @@ hobo_carrierwave
 
 Integration of carrierwave attachment uploading with hobo
 
-#Critcal Reminder:
+#Critical Reminder:
 Before you forget to do it, add the following to your 
 **app/views/taglibs/application.dryml**:
 ```
