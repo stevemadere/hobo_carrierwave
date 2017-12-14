@@ -20,24 +20,29 @@ See [the Hobo docs on extending tags](http://hobocentral.net/manual/dryml-guide#
 explanation of extending existing dryml tags
 
 -->
+
+<def tag="remove-attachment-button">
+  Remove <%= this_field %>?
+  <%=
+     dashed_field = this_field.gsub('_','-')
+     element :input, {class: "remove-#{dashed_field}-tag remove-attachment #{dashed_field} checkbox", type: "checkbox", value: "true",  name: "#{this_parent.class.name.underscore}[remove_#{this_field}]" }, nil, true, true
+   %>
+</def>
+
 <def tag="input" for="HoboCarrierwave::DefaultUploader">
-   <%= file_field_tag param_name_for_this, attributes %>
-</def>
-
-<def tag="input" for="HoboCarrierwave::ImageUploader">
+   <if test="&this_parent.send(this_field + '?')">
    <view/>
-   <p>upload to change only
+   <remove-attachment-button/>
+   <br/>Upload to change only:
+   </if>
    <%= file_field_tag param_name_for_this, attributes %>
-   </p>
-</def>
-
-<def tag="view" for="HoboCarrierwave::ImageUploader">
-   <image src="&this.url"/>
 </def>
 
 <def tag="view" for="HoboCarrierwave::DefaultUploader">
    <a href="&this.url"><%= this.url %></a>
 </def>
 
-
+<def tag="view" for="HoboCarrierwave::ImageUploader">
+   <image src="&this.url"/>
+</def>
 
