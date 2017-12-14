@@ -32,7 +32,10 @@ explanation of extending existing dryml tags
 <def tag="input" for="HoboCarrierwave::DefaultUploader">
    <if test="&this_parent.send(this_field + '?')">
    <view/>
-   <remove-attachment-button/>
+   <% remove_field = 'remove_' + this_field;
+     removable = this_parent.class.accessible_attributes.include?(remove_field) rescue false
+   %>
+   <remove-attachment-button if="&removable"/>
    <br/>Upload to change only:
    </if>
    <%= file_field_tag param_name_for_this, attributes %>
